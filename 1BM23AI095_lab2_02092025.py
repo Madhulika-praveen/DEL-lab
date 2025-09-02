@@ -1,13 +1,6 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[10]:
-
-
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Activation functions
 def sigmoid(z):
     return 1 / (1 + np.exp(-z))
 
@@ -63,10 +56,3 @@ for act in ['sigmoid', 'tanh', 'relu']:
     plt.show()
 
     print(f'Activation = {act:7s} --> Output = {output:.4f}')
-
-
-# In[ ]:
-
-
-
-
