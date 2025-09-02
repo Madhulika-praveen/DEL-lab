@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[3]:
-
-
 import math
 import matplotlib.pyplot as plt
 import numpy as np
@@ -50,7 +44,7 @@ class Perceptron:
         return max(0, x)
     
     def softmax(self, x_vec):
-        e_x = np.exp(x_vec - np.max(x_vec))  # stability trick
+        e_x = np.exp(x_vec - np.max(x_vec)) 
         return e_x / e_x.sum()
     
     def forward(self, inputs):
@@ -68,7 +62,6 @@ def plot_perceptron_outputs():
     weights = [0.5, -0.6]
     bias = 0.1
 
-    # Single-output perceptrons
     perceptron_linear = Perceptron(2, activation='linear')
     perceptron_linear.weights = weights
     perceptron_linear.bias = bias
@@ -111,7 +104,6 @@ def plot_perceptron_outputs():
     plt.show()
 
 def demo_softmax():
-    # Softmax perceptron with 2 outputs
     perceptron_softmax = Perceptron(2, activation='softmax', output_size=2)
     perceptron_softmax.weights = np.array([[0.5, -0.6],
                                            [-0.3, 0.8]])
@@ -125,7 +117,7 @@ def demo_softmax():
 
     for x1 in input1_vals:
         inputs = [x1, input2]
-        output = perceptron_softmax.forward(inputs)  # returns np array of length 2 (softmax)
+        output = perceptron_softmax.forward(inputs) 
         outputs_softmax_class1.append(output[0])
         outputs_softmax_class2.append(output[1])
 
@@ -139,14 +131,11 @@ def demo_softmax():
     plt.grid(True)
     plt.show()
 
-# Run plots for scalar activations
 plot_perceptron_outputs()
 
-# Run softmax demo
 demo_softmax()
 
 
-# In[ ]:
 
 
 
