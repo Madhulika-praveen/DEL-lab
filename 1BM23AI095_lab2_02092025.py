@@ -1,0 +1,75 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[9]:
+
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+def sigmoid(z):
+    return 1/(1+np.exp(-z))
+
+def tanh(z):
+    return np.tanh(z)
+
+def relu(z):
+    return np.maximum(0,z)
+
+class Neuron:
+    def __init__(self, weights, bias, activation="sigmoid"):
+        self.weights = np.array(weights)
+        self.bias = bias
+        self.activation = activation
+        
+    def forward(self, inputs):
+        z = np.dot(inputs, self.weights) + self.bias
+        if self.activation == 'sigmoid':
+            return sigmoid(z)
+        elif self.activation == 'tanh':
+            return tanh(z)
+        elif self.activation == 'relu':
+            return relu(z)
+        else:
+            raise ValueError("Unknown activation function")
+
+inputs = np.array([0.5, -1.2, 3.0])
+weights = [0.4, -0.6, 0.3]
+bias = 0.1
+
+# Range for plotting activation functions
+x = np.linspace(-5, 5, 400)
+
+plt.figure(figsize=(10,6))
+
+for act in ['sigmoid', 'tanh', 'relu']:
+    neuron = Neuron(weights, bias, act)
+    z_value = np.dot(inputs, weights) + bias  # Compute z
+    output = neuron.forward(inputs)           # Compute output
+    
+    # Calculate activation function values for plotting
+    if act == 'sigmoid':
+        y = sigmoid(x)
+    elif act == 'tanh':
+        y = tanh(x)
+    else:
+        y = relu(x)
+    
+    plt.plot(x, y, label=f'{act} function')
+    plt.scatter(z_value, output, s=100, label=f'{act} output ({output:.4f})')
+
+    print(f'Activation={act:7s}--> Output={output:.4f}')
+
+plt.title("Activation Functions and Neuron Output")
+plt.xlabel("Input to activation function (z)")
+plt.ylabel("Activation output")
+plt.legend()
+plt.grid(True)
+plt.show()
+
+
+# In[ ]:
+
+
+
+
