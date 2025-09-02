@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[9]:
-
-
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -37,17 +31,15 @@ inputs = np.array([0.5, -1.2, 3.0])
 weights = [0.4, -0.6, 0.3]
 bias = 0.1
 
-# Range for plotting activation functions
 x = np.linspace(-5, 5, 400)
 
 plt.figure(figsize=(10,6))
 
 for act in ['sigmoid', 'tanh', 'relu']:
     neuron = Neuron(weights, bias, act)
-    z_value = np.dot(inputs, weights) + bias  # Compute z
-    output = neuron.forward(inputs)           # Compute output
+    z_value = np.dot(inputs, weights) + bias  
+    output = neuron.forward(inputs)          
     
-    # Calculate activation function values for plotting
     if act == 'sigmoid':
         y = sigmoid(x)
     elif act == 'tanh':
@@ -66,10 +58,3 @@ plt.ylabel("Activation output")
 plt.legend()
 plt.grid(True)
 plt.show()
-
-
-# In[ ]:
-
-
-
-
